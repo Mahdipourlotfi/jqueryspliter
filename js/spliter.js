@@ -1,24 +1,27 @@
-$(function () 
-{
-    $(".resizable1").resizable(
+$.fn.resizable = function(options) {
+    var defaults = {
+        autoHide:true,
+        otherThing: 'hello'
+    };
+    options = $.extend(defaults, options);
+    autoHide:options.autoHide;
+    handles: 'e';
+    resize: function(e, ui) 
     {
-        autoHide: true,
-        handles: 'e',
-        resize: function(e, ui) 
+        var parent = ui.element.parent();
+        var remainingSpace = parent.width() - ui.element.outerWidth(),
+            divTwo = ui.element.next(),
+            divTwoWidth = (remainingSpace - (divTwo.outerWidth() - divTwo.width()))/parent.width()*100+"%";
+            divTwo.width(divTwoWidth);
+    },
+    stop: function(e, ui) 
+    {
+        var parent = ui.element.parent();
+        ui.element.css(
         {
-            var parent = ui.element.parent();
-            var remainingSpace = parent.width() - ui.element.outerWidth(),
-                divTwo = ui.element.next(),
-                divTwoWidth = (remainingSpace - (divTwo.outerWidth() - divTwo.width()))/parent.width()*100+"%";
-                divTwo.width(divTwoWidth);
-        },
-        stop: function(e, ui) 
-        {
-            var parent = ui.element.parent();
-            ui.element.css(
-            {
-                width: ui.element.width()/parent.width()*100+"%",
-            });
-        }
-    });
-});
+            width: ui.element.width()/parent.width()*100+"%",
+        });
+    }
+};
+
+
