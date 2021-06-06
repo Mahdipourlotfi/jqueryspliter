@@ -3,21 +3,23 @@
     border: 1px brown solid;
     font-size: 0;
 }
-.resizable {
+.resizable_left {
     width: 50%;
     height: 120px;
     padding: 0.5em;
     background-color: coral;
     display: inline-block;
 }
-.resizable2 {
+.resizable_right {
     background-color: lightblue;
+    height: 120px;
 }
-.ui-resizable-e { 
+.resizable_handle { 
     cursor: e-resize; 
     width: 16px; 
     right: -5px; 
     top: 0; 
     bottom: 0; 
     background-color: gray;
+    height: 10px;
 }
